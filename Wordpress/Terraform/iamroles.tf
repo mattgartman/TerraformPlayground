@@ -17,10 +17,10 @@ resource "aws_iam_role" "WordPressAppServerRole" {
 EOF
 }
 
-
-resource "aws_iam_role_policy" "test_policy" {
-    name = "test_policy"
-    role = "${aws_iam_role.WordPressAppServerRole.id}"
+resource "aws_iam_policy" "WordPressAppServerPolicy" {
+    name = "WordPressAppServerPolicy"
+    path = "/"
+    description = "Wordpress App Server Policy"
     policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -37,8 +37,12 @@ resource "aws_iam_role_policy" "test_policy" {
 EOF
 }
 
+resource "aws_iam_role_policy_attachment" "WordPressAppServerPolicy-attach" {
+    role = "${aws_iam_role.WordPressAppServerRole.name}"
+    policy_arn = "${aws_iam_policy.WordPressAppServerPolicy.arn}"
+}
 
-resource "aws_iam_role_policy_attachment" "test-attach" {
-    role = "${aws_iam_role.role.name}"
-    policy_arn = "${aws_iam_policy.policy.arn}"
+resource "aws_iam_instance_profile" "WordPressAppServerPolicyProfile" {
+    name = "WordPressAppServerPolicyProfile"
+    roles = ["${aws_iam_role.WordPressAppServerRole.name}"]
 }

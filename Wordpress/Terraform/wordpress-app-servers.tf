@@ -30,6 +30,7 @@ resource "aws_instance" "wordpress1" {
 		Name = "wordpress1",
 		Env = "Test"
 	}
+	iam_instance_profile = "${aws_iam_instance_profile.WordPressAppServerPolicyProfile.name}"
 }
 
 
@@ -44,4 +45,5 @@ resource "aws_instance" "wordpress2" {
 		Name = "wordpress2",
 		Env = "Test"
 	}
+	iam_instance_profile = "${aws_iam_instance_profile.WordPressAppServerPolicyProfile.name}"
 }
