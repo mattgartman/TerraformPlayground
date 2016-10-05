@@ -13,3 +13,4 @@ variable "aws_key_name" {
 variable "aws_amazon_linux_ami" {
 	default = "ami-6869aa05"
 }
+
