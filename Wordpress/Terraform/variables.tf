@@ -7,7 +7,7 @@ variable "aws_nat_ami" {
 }
 
 variable "aws_key_name" {
-	default = "scaleable-wordpress"
+	default = "scaleable-wordpress1"
 }
 
 variable "aws_amazon_linux_ami" {
